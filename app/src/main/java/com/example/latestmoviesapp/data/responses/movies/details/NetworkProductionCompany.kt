@@ -1,4 +1,4 @@
-package com.example.latestmoviesapp.data.details
+package com.example.latestmoviesapp.data.responses.movies.details
 
 
 import kotlinx.serialization.SerialName

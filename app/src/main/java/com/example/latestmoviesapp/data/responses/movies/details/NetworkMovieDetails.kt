@@ -1,4 +1,4 @@
-package com.example.latestmoviesapp.data.details
+package com.example.latestmoviesapp.data.responses.movies.details
 
 
 import kotlinx.serialization.SerialName
@@ -33,11 +33,7 @@ data class NetworkMovieDetails(
     @SerialName("production_countries")
     val productionCountries: List<NetworkProductionCountry>,
     @SerialName("release_date")
-    val releaseDate: String,
-    @SerialName("revenue")
-    val revenue: Int,
-    @SerialName("runtime")
-    val runtime: Int?,
+    val releaseDate: String, // yyyy-MM-dd
     @SerialName("spoken_languages")
     val spokenLanguages: List<NetworkSpokenLanguage>,
     @SerialName("status")

@@ -1,4 +1,4 @@
-package com.example.latestmoviesapp.data.paging
+package com.example.latestmoviesapp.data.responses.movies.paging
 
 
 import kotlinx.serialization.SerialName
