@@ -1,6 +1,6 @@
 package com.example.latestmoviesapp.data.general
 
-data class NetworkCompileTimeNetworkConfiguration(
+data class NetworkCompileTimeArgumentsConfiguration(
     val baseUrl: String,
     val apiKey: String
 )
