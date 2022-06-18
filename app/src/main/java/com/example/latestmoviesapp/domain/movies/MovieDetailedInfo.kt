@@ -1,0 +1,20 @@
+package com.example.latestmoviesapp.domain.movies
+
+data class MovieDetailedInfo(
+    val id: Int,
+    val title: String,
+    val originalTitle: String,
+    val originalLanguage: String,
+    val posterUrl: String?,
+    val tagline: String?,
+    val releaseDate: String, // yyyy-MM-dd
+    val voteAverage: Double,
+    val voteCount: Int,
+    val genres: List<MovieGenre>,
+    val overview: String?,
+    val homepage: String,
+    val imdbId: String?,
+    val productionCompanies: List<MovieProductionCompany>,
+    val productionCountries: List<MovieProductionCountry>,
+    val adult: Boolean
+)

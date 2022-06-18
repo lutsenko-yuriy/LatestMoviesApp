@@ -8,8 +8,6 @@ data class NetworkMovieDetails(
     val adult: Boolean,
     @SerializedName("backdrop_path")
     val backdropPath: String?,
-    @SerializedName("budget")
-    val budget: Int,
     @SerializedName("genres")
     val genres: List<NetworkGenre>,
     @SerializedName("homepage")
