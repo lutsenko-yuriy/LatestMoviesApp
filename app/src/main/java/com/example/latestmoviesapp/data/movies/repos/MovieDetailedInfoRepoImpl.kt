@@ -6,6 +6,8 @@ import com.example.latestmoviesapp.data.general.Utils.asMovieDetailedInfo
 import com.example.latestmoviesapp.data.image.repos.ImageConfigurationRepo
 import com.example.latestmoviesapp.data.movies.services.MovieDetailsNetworkService
 import com.example.latestmoviesapp.domain.movies.MovieDetailedInfo
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class MovieDetailedInfoRepoImpl @Inject constructor(
@@ -14,8 +16,9 @@ class MovieDetailedInfoRepoImpl @Inject constructor(
     private val imageConfigurationRepo: ImageConfigurationRepo,
     private val service: MovieDetailsNetworkService
 ) : MovieDetailedInfoRepo {
-    override suspend fun getMovieDetailedInfo(movieId: Int): MovieDetailedInfo {
-        return service.fetchMovieDetails(compileTimeArguments.apiKey, runtimeArguments.locale.toLanguageTag(), movieId)
-            .asMovieDetailedInfo(imageConfigurationRepo.getImageConfiguration(), runtimeArguments.locale)
+    override suspend fun getMovieDetailedInfo(movieId: Int): MovieDetailedInfo = withContext(Dispatchers.IO) {
+        val imageConfiguration = imageConfigurationRepo.getImageConfiguration()
+        return@withContext service.fetchMovieDetails(compileTimeArguments.apiKey, runtimeArguments.locale.toLanguageTag(), movieId)
+            .asMovieDetailedInfo(imageConfiguration, runtimeArguments.locale)
     }
 }

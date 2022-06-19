@@ -7,6 +7,8 @@ import com.example.latestmoviesapp.data.general.Utils.formatToNetworkArgument
 import com.example.latestmoviesapp.data.image.repos.ImageConfigurationRepo
 import com.example.latestmoviesapp.data.movies.services.LatestMoviesNetworkService
 import com.example.latestmoviesapp.domain.movies.MovieShortInfoPage
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class LatestMoviesRepoImpl @Inject constructor(
@@ -16,7 +18,7 @@ class LatestMoviesRepoImpl @Inject constructor(
     private val service: LatestMoviesNetworkService
 ) : LatestMoviesRepo {
 
-    override suspend fun getLatestMovies(page: Int): MovieShortInfoPage {
+    override suspend fun getLatestMovies(page: Int): MovieShortInfoPage = withContext(Dispatchers.IO) {
         val configuration = imageConfigurationRepo.getImageConfiguration()
         val latestMoviesPage = service.fetchLatestMovies(
             apiKey = compileTimeArguments.apiKey,
@@ -25,7 +27,7 @@ class LatestMoviesRepoImpl @Inject constructor(
             order = runtimeArguments.order,
             page = page
         )
-        return latestMoviesPage.asMovieShortInfoPage(configuration, runtimeArguments)
+        return@withContext latestMoviesPage.asMovieShortInfoPage(configuration, runtimeArguments)
     }
 
 }

@@ -6,6 +6,8 @@ import com.example.latestmoviesapp.data.general.Utils.asMovieShortInfoPage
 import com.example.latestmoviesapp.data.image.repos.ImageConfigurationRepo
 import com.example.latestmoviesapp.data.movies.services.MoviesByQueryNetworkService
 import com.example.latestmoviesapp.domain.movies.MovieShortInfoPage
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class MoviesByQueryRepoImpl @Inject constructor(
@@ -15,7 +17,7 @@ class MoviesByQueryRepoImpl @Inject constructor(
     private val service: MoviesByQueryNetworkService
 ) : MoviesByQueryRepo {
 
-    override suspend fun getMoviesByQuery(query: String, page: Int): MovieShortInfoPage {
+    override suspend fun getMoviesByQuery(query: String, page: Int): MovieShortInfoPage = withContext(Dispatchers.IO) {
         val configuration = imageConfigurationRepo.getImageConfiguration()
         val latestMoviesPage = service.fetchMovies(
             apiKey = compileTimeArguments.apiKey,
@@ -24,7 +26,7 @@ class MoviesByQueryRepoImpl @Inject constructor(
             order = runtimeArguments.order,
             page = page
         )
-        return latestMoviesPage.asMovieShortInfoPage(configuration, runtimeArguments)
+        return@withContext latestMoviesPage.asMovieShortInfoPage(configuration, runtimeArguments)
     }
 
 }

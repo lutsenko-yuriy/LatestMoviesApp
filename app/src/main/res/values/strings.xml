@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Latest MoviesApp</string>
+    <string name="app_name">Latest Movies App</string>
+    <string name="movie_list_title">Latest Movies</string>
+    <string name="movie_list_item_poster_description" formatted="false">A poster for a movie with a title \"%s\"</string>
+    <string name="movie_list_item_icon_description" formatted="false">An icon for a movie with a title \"%s\"</string>
+    <string name="movie_list_item_avg_review" formatted="false">Average Review: %d</string>
 </resources>
