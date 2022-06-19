@@ -36,4 +36,6 @@ object TestHelperObject {
     const val SOME_SECURE_BASE_URL = "https://google.com/"
     val DEFAULT_IMAGE_CONFIGURATION = ImageConfiguration(SOME_SECURE_BASE_URL)
 
+    const val DEFAULT_QUERY = "some query"
+
 }
