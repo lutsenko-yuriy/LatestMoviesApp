@@ -1,4 +1,4 @@
-package com.example.latestmoviesapp.data.configuration.responses
+package com.example.latestmoviesapp.data.image.responses
 
 import com.google.gson.annotations.SerializedName
 

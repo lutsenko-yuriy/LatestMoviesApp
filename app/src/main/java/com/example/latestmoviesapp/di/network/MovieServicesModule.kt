@@ -1,6 +1,6 @@
 package com.example.latestmoviesapp.di.network
 
-import com.example.latestmoviesapp.data.movies.services.DiscoverLatestMoviesNetworkService
+import com.example.latestmoviesapp.data.movies.services.LatestMoviesNetworkService
 import com.example.latestmoviesapp.data.movies.services.MovieDetailsNetworkService
 import com.example.latestmoviesapp.data.movies.services.MoviesByQueryNetworkService
 import dagger.Module
@@ -17,7 +17,7 @@ class MovieServicesModule {
 
     @Provides
     @Singleton
-    fun provideDiscoverLatestMoviesNetworkService(retrofit: Retrofit): DiscoverLatestMoviesNetworkService {
+    fun provideDiscoverLatestMoviesNetworkService(retrofit: Retrofit): LatestMoviesNetworkService {
         return retrofit.create()
     }
 

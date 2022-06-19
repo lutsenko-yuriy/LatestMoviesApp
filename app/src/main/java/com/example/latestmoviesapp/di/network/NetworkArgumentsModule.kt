@@ -3,8 +3,8 @@ package com.example.latestmoviesapp.di.network
 import android.content.Context
 import android.os.Build
 import com.example.latestmoviesapp.R
-import com.example.latestmoviesapp.data.general.NetworkCompileTimeArgumentsConfiguration
-import com.example.latestmoviesapp.data.general.NetworkRuntimeArgumentsConfiguration
+import com.example.latestmoviesapp.data.general.NetworkCompileTimeArguments
+import com.example.latestmoviesapp.data.general.NetworkRuntimeArguments
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,8 +19,8 @@ class NetworkArgumentsModule {
 
     @Provides
     @Singleton
-    fun provideCompileTimeArguments(@ApplicationContext context: Context): NetworkCompileTimeArgumentsConfiguration {
-        return NetworkCompileTimeArgumentsConfiguration(
+    fun provideCompileTimeArguments(@ApplicationContext context: Context): NetworkCompileTimeArguments {
+        return NetworkCompileTimeArguments(
             baseUrl = context.getString(R.string.base_url),
             apiKey = context.getString(R.string.api_key),
         )
@@ -28,14 +28,14 @@ class NetworkArgumentsModule {
 
     @Provides
     @Singleton
-    fun provideRuntimeArguments(@ApplicationContext context: Context): NetworkRuntimeArgumentsConfiguration {
+    fun provideRuntimeArguments(@ApplicationContext context: Context): NetworkRuntimeArguments {
         @Suppress("DEPRECATION")
         val locale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             context.resources.configuration.locales[0]
         } else {
             context.resources.configuration.locale
         }
-        return NetworkRuntimeArgumentsConfiguration(
+        return NetworkRuntimeArguments(
             latestReleaseDate = Calendar.getInstance(),
             locale = locale
         )

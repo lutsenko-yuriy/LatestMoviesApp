@@ -1,6 +1,6 @@
-package com.example.latestmoviesapp.data.configuration.services
+package com.example.latestmoviesapp.data.image.services
 
-import com.example.latestmoviesapp.data.configuration.responses.NetworkImageConfiguration
+import com.example.latestmoviesapp.data.image.responses.NetworkImageConfiguration
 import retrofit2.http.GET
 import retrofit2.http.Query
 

@@ -1,6 +1,6 @@
 package com.example.latestmoviesapp.di.network
 
-import com.example.latestmoviesapp.data.general.NetworkCompileTimeArgumentsConfiguration
+import com.example.latestmoviesapp.data.general.NetworkCompileTimeArguments
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,7 +15,7 @@ class RetrofitModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(configuration: NetworkCompileTimeArgumentsConfiguration): Retrofit {
+    fun provideRetrofit(configuration: NetworkCompileTimeArguments): Retrofit {
         return Retrofit.Builder()
             .baseUrl(configuration.baseUrl)
             .addConverterFactory(GsonConverterFactory.create())

@@ -4,7 +4,7 @@ import com.example.latestmoviesapp.data.movies.responses.paging.NetworkPagingMov
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface DiscoverLatestMoviesNetworkService {
+interface LatestMoviesNetworkService {
     @GET("discover/movie")
     suspend fun fetchLatestMovies(
         @Query("api_key") apiKey: String,

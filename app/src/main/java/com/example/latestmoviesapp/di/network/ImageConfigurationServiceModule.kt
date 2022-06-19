@@ -1,6 +1,6 @@
 package com.example.latestmoviesapp.di.network
 
-import com.example.latestmoviesapp.data.configuration.services.ImageConfigurationService
+import com.example.latestmoviesapp.data.image.services.ImageConfigurationService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
