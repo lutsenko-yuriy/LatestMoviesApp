@@ -10,6 +10,8 @@ class ImageConfigurationRepoImpl @Inject constructor(
     private val service: ImageConfigurationService
 ) : ImageConfigurationRepo {
     override suspend fun getImageConfiguration(): ImageConfiguration {
-        return ImageConfiguration("")
+        val networkImageConfiguration = service.fetchImageConfiguration(arguments.apiKey)
+
+        return ImageConfiguration(baseUrl = networkImageConfiguration.configuration.secureBaseUrl)
     }
 }
