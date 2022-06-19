@@ -37,7 +37,7 @@ class NetworkArgumentsModule {
         }
         return NetworkRuntimeArguments(
             latestReleaseDate = Calendar.getInstance(),
-            locale = locale
+            locale = locale,
         )
     }
 
