@@ -193,6 +193,7 @@ class MovieDetailedInfoRepoImplTest {
         Assertions.assertEquals(expectedResult, actualResult)
     }
 
+
     @Test
     fun getMovieDetailsById_allNullableFieldsAreNull() = runTest {
         whenever(
@@ -318,6 +319,7 @@ class MovieDetailedInfoRepoImplTest {
 
         Assertions.assertEquals(expectedResult, actualResult)
     }
+
 
     @Test
     fun getMovieDetailsById_listsAreEmpty() = runTest {
