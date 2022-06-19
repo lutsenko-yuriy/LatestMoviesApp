@@ -37,5 +37,6 @@ object TestHelperObject {
     val DEFAULT_IMAGE_CONFIGURATION = ImageConfiguration(SOME_SECURE_BASE_URL)
 
     const val DEFAULT_QUERY = "some query"
+    const val DEFAULT_MOVIE_ID = 1234
 
 }

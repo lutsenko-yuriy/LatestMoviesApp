@@ -266,9 +266,9 @@ class LatestMoviesRepoImplTest {
                         id = 1,
                         title = "Title",
                         posterPath = null,
-                        releaseDate = "2020-06-05",
+                        releaseDate = "2020-06-04",
                         voteAverage = 5,
-                        adult = true,
+                        adult = false,
                     )
                 ),
                 totalPages = 1,
@@ -301,10 +301,10 @@ class LatestMoviesRepoImplTest {
                     title = "Title",
                     posterUrl = null,
                     releaseDate = Calendar.getInstance().apply {
-                        time = Date(2020 - 1900, 5, 5, 0, 0, 0)
+                        time = Date(2020 - 1900, 5, 4, 0, 0, 0)
                     },
                     voteAverage = 5,
-                    adult = true,
+                    adult = false,
                 )
             ),
             totalPages = 1,

@@ -22,8 +22,6 @@ data class NetworkMovieDetails(
     val originalTitle: String,
     @SerializedName("overview")
     val overview: String?,
-    @SerializedName("poster_path")
-    val posterPath: String?,
     @SerializedName("production_companies")
     val productionCompanies: List<NetworkProductionCompany>,
     @SerializedName("production_countries")

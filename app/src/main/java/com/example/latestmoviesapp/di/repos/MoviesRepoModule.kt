@@ -1,9 +1,6 @@
 package com.example.latestmoviesapp.di.repos
 
-import com.example.latestmoviesapp.data.movies.repos.LatestMoviesRepo
-import com.example.latestmoviesapp.data.movies.repos.LatestMoviesRepoImpl
-import com.example.latestmoviesapp.data.movies.repos.MoviesByQueryRepo
-import com.example.latestmoviesapp.data.movies.repos.MoviesByQueryRepoImpl
+import com.example.latestmoviesapp.data.movies.repos.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -21,5 +18,9 @@ interface MoviesRepoModule {
     @Binds
     @Singleton
     fun bindMoviesByQueryRepo(repo: MoviesByQueryRepoImpl): MoviesByQueryRepo
+
+    @Binds
+    @Singleton
+    fun bindMovieDetailedInfoRepo(repo: MovieDetailedInfoRepoImpl): MovieDetailedInfoRepo
 
 }

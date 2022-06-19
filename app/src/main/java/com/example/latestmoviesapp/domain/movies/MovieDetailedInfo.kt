@@ -1,13 +1,15 @@
 package com.example.latestmoviesapp.domain.movies
 
+import java.util.*
+
 data class MovieDetailedInfo(
     val id: Int,
     val title: String,
     val originalTitle: String,
     val originalLanguage: String,
-    val posterUrl: String?,
+    val backdropUrl: String?,
     val tagline: String?,
-    val releaseDate: String, // yyyy-MM-dd
+    val releaseDate: Calendar, // yyyy-MM-dd
     val voteAverage: Double,
     val voteCount: Int,
     val genres: List<MovieGenre>,

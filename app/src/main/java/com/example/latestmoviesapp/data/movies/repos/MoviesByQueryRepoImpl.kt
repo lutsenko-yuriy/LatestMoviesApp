@@ -2,7 +2,7 @@ package com.example.latestmoviesapp.data.movies.repos
 
 import com.example.latestmoviesapp.data.general.NetworkCompileTimeArguments
 import com.example.latestmoviesapp.data.general.NetworkRuntimeArguments
-import com.example.latestmoviesapp.data.general.Utils.asMovieShortDetail
+import com.example.latestmoviesapp.data.general.Utils.asMovieShortInfoPage
 import com.example.latestmoviesapp.data.image.repos.ImageConfigurationRepo
 import com.example.latestmoviesapp.data.movies.services.MoviesByQueryNetworkService
 import com.example.latestmoviesapp.domain.movies.MovieShortInfoPage
@@ -24,11 +24,7 @@ class MoviesByQueryRepoImpl @Inject constructor(
             order = runtimeArguments.order,
             page = page
         )
-        return MovieShortInfoPage(
-            page = latestMoviesPage.page,
-            movies = latestMoviesPage.movies.map { it.asMovieShortDetail(configuration, runtimeArguments.locale) },
-            totalPages = latestMoviesPage.totalPages,
-            totalResults = latestMoviesPage.totalResults
-        )
+        return latestMoviesPage.asMovieShortInfoPage(configuration, runtimeArguments)
     }
+
 }

@@ -59,7 +59,7 @@ class MoviesByQueryRepoImplTest {
     }
 
     @Test
-    fun getLatestMovies_emptyList() = runTest {
+    fun getMoviesByQuery_emptyList() = runTest {
         whenever(
             service.fetchMovies(
                 apiKey = ArgumentMatchers.anyString(),
@@ -104,7 +104,7 @@ class MoviesByQueryRepoImplTest {
     }
 
     @Test
-    fun getLatestMovies_singleMovie_posterIsPresent() = runTest {
+    fun getMoviesByQuery_singleMovie_posterIsPresent() = runTest {
         whenever(
             service.fetchMovies(
                 apiKey = ArgumentMatchers.anyString(),
@@ -169,7 +169,7 @@ class MoviesByQueryRepoImplTest {
     }
 
     @Test
-    fun getLatestMovies_singleMovie_posterIsAbsent() = runTest {
+    fun getMoviesByQuery_singleMovie_posterIsAbsent() = runTest {
         whenever(
             service.fetchMovies(
                 apiKey = ArgumentMatchers.anyString(),
@@ -235,7 +235,7 @@ class MoviesByQueryRepoImplTest {
 
 
     @Test
-    fun getLatestMovies_severalMovies_mixed() = runTest {
+    fun getMoviesByQuery_severalMovies_mixed() = runTest {
         whenever(
             service.fetchMovies(
                 apiKey = ArgumentMatchers.anyString(),
@@ -260,9 +260,9 @@ class MoviesByQueryRepoImplTest {
                         id = 1,
                         title = "Title",
                         posterPath = null,
-                        releaseDate = "2020-06-05",
+                        releaseDate = "2020-06-04",
                         voteAverage = 5,
-                        adult = true,
+                        adult = false,
                     )
                 ),
                 totalPages = 1,
@@ -295,10 +295,10 @@ class MoviesByQueryRepoImplTest {
                     title = "Title",
                     posterUrl = null,
                     releaseDate = Calendar.getInstance().apply {
-                        time = Date(2020 - 1900, 5, 5, 0, 0, 0)
+                        time = Date(2020 - 1900, 5, 4, 0, 0, 0)
                     },
                     voteAverage = 5,
-                    adult = true,
+                    adult = false,
                 )
             ),
             totalPages = 1,
