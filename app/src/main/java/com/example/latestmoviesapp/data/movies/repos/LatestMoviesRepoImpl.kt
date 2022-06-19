@@ -1,17 +1,36 @@
 package com.example.latestmoviesapp.data.movies.repos
 
+import com.example.latestmoviesapp.data.general.NetworkCompileTimeArguments
+import com.example.latestmoviesapp.data.general.NetworkRuntimeArguments
+import com.example.latestmoviesapp.data.general.Utils.asMovieShortDetail
+import com.example.latestmoviesapp.data.general.Utils.formatToNetworkArgument
 import com.example.latestmoviesapp.data.image.repos.ImageConfigurationRepo
 import com.example.latestmoviesapp.data.movies.services.LatestMoviesNetworkService
 import com.example.latestmoviesapp.domain.movies.MovieShortInfoPage
 import javax.inject.Inject
 
 class LatestMoviesRepoImpl @Inject constructor(
+    private val compileTimeArguments: NetworkCompileTimeArguments,
+    private val runtimeArguments: NetworkRuntimeArguments,
     private val imageConfigurationRepo: ImageConfigurationRepo,
     private val service: LatestMoviesNetworkService
 ) : LatestMoviesRepo {
 
     override suspend fun getLatestMovies(page: Int): MovieShortInfoPage {
-        return MovieShortInfoPage(page = page, movies = emptyList(), totalPages = 12, totalResults = 12134)
+        val configuration = imageConfigurationRepo.getImageConfiguration()
+        val latestMoviesPage = service.fetchLatestMovies(
+            apiKey = compileTimeArguments.apiKey,
+            locale = runtimeArguments.locale.toLanguageTag(),
+            releaseDate = runtimeArguments.latestReleaseDate.formatToNetworkArgument(runtimeArguments.locale),
+            order = runtimeArguments.order,
+            page = page
+        )
+        return MovieShortInfoPage(
+            page = latestMoviesPage.page,
+            movies = latestMoviesPage.movies.map { it.asMovieShortDetail(configuration, runtimeArguments.locale) },
+            totalPages = latestMoviesPage.totalPages,
+            totalResults = latestMoviesPage.totalResults
+        )
     }
 
 }

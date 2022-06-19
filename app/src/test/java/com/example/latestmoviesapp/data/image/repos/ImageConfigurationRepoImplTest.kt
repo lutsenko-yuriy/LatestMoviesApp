@@ -7,7 +7,7 @@ import com.example.latestmoviesapp.data.general.NetworkCompileTimeArguments
 import com.example.latestmoviesapp.data.image.responses.NetworkConfiguration
 import com.example.latestmoviesapp.data.image.responses.NetworkImageConfiguration
 import com.example.latestmoviesapp.data.image.services.ImageConfigurationService
-import com.example.latestmoviesapp.domain.images.ImageConfiguration
+import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.After
@@ -59,7 +59,7 @@ class ImageConfigurationRepoImplTest {
         val actualConfiguration = repo.getImageConfiguration()
 
         verify(service, times(1)).fetchImageConfiguration(anyString())
-        assert(actualConfiguration == expectedConfiguration)
+        assertEquals(expectedConfiguration, actualConfiguration)
     }
 
 }

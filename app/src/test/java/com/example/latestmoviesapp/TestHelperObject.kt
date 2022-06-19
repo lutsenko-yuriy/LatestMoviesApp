@@ -19,7 +19,7 @@ object TestHelperObject {
     val LATEST_RELEASE_DATE = Calendar.getInstance().apply {
         set(2020, 5, 5, 0, 0, 0)
     }
-    val LATEST_RELEASE_DATE_AS_STRING = "2020-05-05"
+    val LATEST_RELEASE_DATE_AS_STRING = "2020-06-05"
 
     val LOCALE = Locale.US
     val LOCALE_AS_STRING = "en-US"
