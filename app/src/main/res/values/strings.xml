@@ -9,7 +9,7 @@
 
     <string name="movie_details_error_title">An error occurred</string>
     <string name="movie_details_error_description">The movie could not be fetched. Please try again later.</string>
-    <string name="movie_details_content_description" formatted="false">A backdrop for a movie \"%s\"</string>
+    <string name="movie_details_poster_content_description" formatted="false">A poster for a movie \"%s\"</string>
     <string name="movie_details_adults_only">18+</string>
     <string name="movie_details_star_icon_description">A review icon</string>
     <string name="movie_details_countries" formatted="false">Countries: %s</string>
