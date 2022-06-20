@@ -7,9 +7,9 @@ data class MovieDetailedInfo(
     val title: String,
     val originalTitle: String,
     val originalLanguage: String,
-    val backdropUrl: String?,
+    val posterUrl: String?,
     val tagline: String?,
-    val releaseDate: Calendar, // yyyy-MM-dd
+    val releaseDate: Calendar,
     val voteAverage: Double,
     val voteCount: Int,
     val genres: List<MovieGenre>,

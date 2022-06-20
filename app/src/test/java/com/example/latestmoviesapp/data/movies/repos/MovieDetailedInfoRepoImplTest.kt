@@ -71,9 +71,9 @@ class MovieDetailedInfoRepoImplTest {
     fun getMovieDetailsById() = runTest {
         whenever(
             service.fetchMovieDetails(
+                movieId = anyInt(),
                 apiKey = ArgumentMatchers.anyString(),
-                locale = any(),
-                movieId = anyInt()
+                locale = any()
             )
         ).thenReturn(
             NetworkMovieDetails(
@@ -81,7 +81,7 @@ class MovieDetailedInfoRepoImplTest {
                 title = "Title",
                 originalTitle = "Original Title",
                 originalLanguage = "English",
-                backdropPath = "/backdropPath.png",
+                posterPath = "/backdropPath.png",
                 tagline = "Tagline",
                 releaseDate = "2020-06-05",
                 voteAverage = 5.5,
@@ -137,7 +137,7 @@ class MovieDetailedInfoRepoImplTest {
             title = "Title",
             originalTitle = "Original Title",
             originalLanguage = "English",
-            backdropUrl = "${TestHelperObject.SOME_SECURE_BASE_URL}original/backdropPath.png",
+            posterUrl = "${TestHelperObject.SOME_SECURE_BASE_URL}original/backdropPath.png",
             tagline = "Tagline",
             releaseDate = Calendar.getInstance().apply {
                 time = Date(2020 - 1900, 5, 5, 0, 0, 0)
@@ -185,9 +185,9 @@ class MovieDetailedInfoRepoImplTest {
         val actualResult = repo.getMovieDetailedInfo(DEFAULT_MOVIE_ID)
 
         verify(service, times(1)).fetchMovieDetails(
+            movieId = DEFAULT_MOVIE_ID,
             apiKey = dummyCompileTimeArguments.apiKey,
             locale = LOCALE_AS_STRING,
-            movieId = DEFAULT_MOVIE_ID,
         )
 
         Assertions.assertEquals(expectedResult, actualResult)
@@ -198,9 +198,9 @@ class MovieDetailedInfoRepoImplTest {
     fun getMovieDetailsById_allNullableFieldsAreNull() = runTest {
         whenever(
             service.fetchMovieDetails(
+                movieId = anyInt(),
                 apiKey = ArgumentMatchers.anyString(),
-                locale = any(),
-                movieId = anyInt()
+                locale = any()
             )
         ).thenReturn(
             NetworkMovieDetails(
@@ -208,7 +208,7 @@ class MovieDetailedInfoRepoImplTest {
                 title = "Title",
                 originalTitle = "Original Title",
                 originalLanguage = "English",
-                backdropPath = null,
+                posterPath = null,
                 tagline = null,
                 releaseDate = "2020-06-05",
                 voteAverage = 5.5,
@@ -264,7 +264,7 @@ class MovieDetailedInfoRepoImplTest {
             title = "Title",
             originalTitle = "Original Title",
             originalLanguage = "English",
-            backdropUrl = null,
+            posterUrl = null,
             tagline = null,
             releaseDate = Calendar.getInstance().apply {
                 time = Date(2020 - 1900, 5, 5, 0, 0, 0)
@@ -312,9 +312,9 @@ class MovieDetailedInfoRepoImplTest {
         val actualResult = repo.getMovieDetailedInfo(DEFAULT_MOVIE_ID)
 
         verify(service, times(1)).fetchMovieDetails(
+            movieId = DEFAULT_MOVIE_ID,
             apiKey = dummyCompileTimeArguments.apiKey,
             locale = LOCALE_AS_STRING,
-            movieId = DEFAULT_MOVIE_ID,
         )
 
         Assertions.assertEquals(expectedResult, actualResult)
@@ -325,9 +325,9 @@ class MovieDetailedInfoRepoImplTest {
     fun getMovieDetailsById_listsAreEmpty() = runTest {
         whenever(
             service.fetchMovieDetails(
+                movieId = anyInt(),
                 apiKey = ArgumentMatchers.anyString(),
-                locale = any(),
-                movieId = anyInt()
+                locale = any()
             )
         ).thenReturn(
             NetworkMovieDetails(
@@ -335,7 +335,7 @@ class MovieDetailedInfoRepoImplTest {
                 title = "Title",
                 originalTitle = "Original Title",
                 originalLanguage = "English",
-                backdropPath = "/backdropPath.png",
+                posterPath = "/backdropPath.png",
                 tagline = "Tagline",
                 releaseDate = "2020-06-05",
                 voteAverage = 5.5,
@@ -362,7 +362,7 @@ class MovieDetailedInfoRepoImplTest {
             title = "Title",
             originalTitle = "Original Title",
             originalLanguage = "English",
-            backdropUrl = "${TestHelperObject.SOME_SECURE_BASE_URL}original/backdropPath.png",
+            posterUrl = "${TestHelperObject.SOME_SECURE_BASE_URL}original/backdropPath.png",
             tagline = "Tagline",
             releaseDate = Calendar.getInstance().apply {
                 time = Date(2020 - 1900, 5, 5, 0, 0, 0)
@@ -381,9 +381,9 @@ class MovieDetailedInfoRepoImplTest {
         val actualResult = repo.getMovieDetailedInfo(DEFAULT_MOVIE_ID)
 
         verify(service, times(1)).fetchMovieDetails(
+            movieId = DEFAULT_MOVIE_ID,
             apiKey = dummyCompileTimeArguments.apiKey,
             locale = LOCALE_AS_STRING,
-            movieId = DEFAULT_MOVIE_ID,
         )
 
         Assertions.assertEquals(expectedResult, actualResult)

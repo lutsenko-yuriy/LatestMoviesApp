@@ -57,7 +57,7 @@ object Utils {
             title = this.title,
             originalTitle = this.originalTitle,
             originalLanguage = this.originalLanguage,
-            backdropUrl = buildUrlFromPath(imageConfiguration, this.backdropPath),
+            posterUrl = buildUrlFromPath(imageConfiguration, this.posterPath),
             tagline = this.tagline,
             releaseDate = this.releaseDate.formatToDate(locale),
             voteAverage = this.voteAverage,

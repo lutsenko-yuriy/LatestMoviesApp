@@ -6,8 +6,8 @@ import com.google.gson.annotations.SerializedName
 data class NetworkMovieDetails(
     @SerializedName("adult")
     val adult: Boolean,
-    @SerializedName("backdrop_path")
-    val backdropPath: String?,
+    @SerializedName("poster_path")
+    val posterPath: String?,
     @SerializedName("genres")
     val genres: List<NetworkGenre>,
     @SerializedName("homepage")

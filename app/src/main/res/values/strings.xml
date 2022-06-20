@@ -4,4 +4,20 @@
     <string name="movie_list_item_poster_description" formatted="false">A poster for a movie with a title \"%s\"</string>
     <string name="movie_list_item_icon_description" formatted="false">An icon for a movie with a title \"%s\"</string>
     <string name="movie_list_item_avg_review" formatted="false">Average Review: %d</string>
+
+    <string name="movie_details_loading_title">Loading…</string>
+
+    <string name="movie_details_error_title">An error occurred</string>
+    <string name="movie_details_error_description">The movie could not be fetched. Please try again later.</string>
+    <string name="movie_details_content_description" formatted="false">A backdrop for a movie \"%s\"</string>
+    <string name="movie_details_adults_only">18+</string>
+    <string name="movie_details_star_icon_description">A review icon</string>
+    <string name="movie_details_countries" formatted="false">Countries: %s</string>
+    <string name="movie_details_production_companies" formatted="false">Produced by: %s</string>
+    <string name="movie_details_link_icon">An icon to open a web browser for a given website</string>
+    <string name="movie_details_open_homepage">Open the home page of the movie</string>
+    <plurals name="movie_details_reviews">
+        <item quantity="one">Based on %1$d review</item>
+        <item quantity="other">Based on %1$d reviews</item>
+    </plurals>
 </resources>

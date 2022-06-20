@@ -15,94 +15,114 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
+import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import coil.compose.AsyncImage
 import com.example.latestmoviesapp.R
 import com.example.latestmoviesapp.domain.movies.MovieShortInfo
+import com.example.latestmoviesapp.ui.general.MoviesTopAppBar
+import java.util.*
 
-object MoviesListScreen {
-    const val path = "list"
+@Composable
+fun MoviesListScreen(movieListViewModel: MovieListViewModel, onMovieSelected: (MovieShortInfo) -> Unit) {
+    Scaffold(
+        topBar = {
+            MoviesTopAppBar(text = stringResource(id = R.string.movie_list_title))
+        }
+    ) {
+        val list = movieListViewModel.movies.collectAsLazyPagingItems()
 
-    @Composable
-    fun MoviesListScreen(listViewModel: ListViewModel, navController: NavHostController) {
-        Scaffold(
-            topBar = {
-                TopAppBar {
-                    Text(
-                        text = stringResource(id = R.string.movie_list_title),
-                        modifier = Modifier.padding(horizontal = 16.dp),
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White
-                    )
-                }
-            }
-        ) {
-            val list = listViewModel.movies.collectAsLazyPagingItems()
+        MoviesList(list = list, onMovieSelected = onMovieSelected)
+    }
+}
 
-            LazyColumn(modifier = Modifier.fillMaxSize()) {
-                items(items = list) {
-                    it?.run {
-                        SingleMovieListItem(this, navController)
-                    }
-                }
+@Composable
+private fun MoviesList(
+    modifier: Modifier = Modifier,
+    list: LazyPagingItems<MovieShortInfo>,
+    onMovieSelected: (MovieShortInfo) -> Unit
+) {
+    LazyColumn(modifier = modifier.fillMaxSize()) {
+        items(items = list) { movieInfo ->
+            if (movieInfo != null) {
+                SingleMovieListItem(movieShortInfo = movieInfo, onMovieSelected = { onMovieSelected(movieInfo) })
             }
         }
     }
+}
 
-    @Composable
-    fun SingleMovieListItem(movieShortInfo: MovieShortInfo, navController: NavHostController) {
-        Card(
-            shape = RoundedCornerShape(8.dp),
-            backgroundColor = MaterialTheme.colors.surface,
-            elevation = 4.dp,
+@Composable
+fun SingleMovieListItem(
+    modifier: Modifier = Modifier,
+    movieShortInfo: MovieShortInfo,
+    onMovieSelected: () -> Unit
+) {
+    Card(
+        shape = RoundedCornerShape(8.dp),
+        backgroundColor = MaterialTheme.colors.surface,
+        elevation = 4.dp,
+        modifier = modifier
+            .padding(8.dp)
+            .clickable(onClick = onMovieSelected)
+    ) {
+        Row(
             modifier = Modifier
-                .padding(8.dp)
-                .clickable {
-                    navController.navigate("details/${movieShortInfo.id}")
-                }
+                .padding(horizontal = 16.dp, vertical = 8.dp)
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Row(
+            AsyncImage(
+                model = movieShortInfo.posterUrl,
+                contentDescription = stringResource(R.string.movie_list_item_poster_description, movieShortInfo.title),
+                modifier = Modifier.size(width = 42.dp, height = 60.dp),
+                contentScale = ContentScale.FillHeight
+            )
+
+            Column(
                 modifier = Modifier
-                    .padding(horizontal = 16.dp, vertical = 8.dp)
-                    .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
+                    .weight(1f)
+                    .padding(16.dp)
             ) {
-                AsyncImage(
-                    model = movieShortInfo.posterUrl,
-                    contentDescription = stringResource(R.string.movie_list_item_poster_description, movieShortInfo.title),
-                    modifier = Modifier.size(width = 42.dp, height = 60.dp),
-                    contentScale = ContentScale.FillHeight
+                Text(
+                    text = movieShortInfo.title,
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold
                 )
-
-                Column(
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(16.dp)
-                ) {
-                    Text(
-                        text = movieShortInfo.title,
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Text(
-                        modifier = Modifier.padding(top = 4.dp),
-                        text = stringResource(id = R.string.movie_list_item_avg_review, movieShortInfo.voteAverage),
-                        fontSize = 12.sp,
-                        fontStyle = FontStyle.Italic,
-                        color = Color.Gray
-                    )
-                }
-
-                Icon(
-                    imageVector = Icons.Default.KeyboardArrowRight,
-                    contentDescription = stringResource(R.string.movie_list_item_icon_description, movieShortInfo.title),
+                Text(
+                    modifier = Modifier.padding(top = 4.dp),
+                    text = stringResource(id = R.string.movie_list_item_avg_review, movieShortInfo.voteAverage),
+                    fontSize = 12.sp,
+                    fontStyle = FontStyle.Italic,
+                    color = Color.Gray
                 )
             }
+
+            Icon(
+                imageVector = Icons.Default.KeyboardArrowRight,
+                contentDescription = stringResource(R.string.movie_list_item_icon_description, movieShortInfo.title),
+            )
         }
     }
+}
+
+@Preview
+@Composable
+private fun SingleMovieListItemPreview() {
+    SingleMovieListItem(
+        movieShortInfo = MovieShortInfo(
+            id = 1,
+            title = "Title",
+            posterUrl = "https://google.com/original/posterpath.jpg",
+            releaseDate = Calendar.getInstance().apply {
+                time = Date(2020 - 1900, 5, 5, 0, 0, 0)
+            },
+            voteAverage = 5,
+            adult = true,
+        ),
+        onMovieSelected = { }
+    )
 }

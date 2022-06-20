@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @HiltViewModel
-class ListViewModel @Inject constructor(
+class MovieListViewModel @Inject constructor(
     private val moviesRepo: LatestMoviesRepo
 ) : ViewModel() {
 

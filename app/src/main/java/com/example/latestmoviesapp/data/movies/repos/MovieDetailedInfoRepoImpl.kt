@@ -18,7 +18,11 @@ class MovieDetailedInfoRepoImpl @Inject constructor(
 ) : MovieDetailedInfoRepo {
     override suspend fun getMovieDetailedInfo(movieId: Int): MovieDetailedInfo = withContext(Dispatchers.IO) {
         val imageConfiguration = imageConfigurationRepo.getImageConfiguration()
-        return@withContext service.fetchMovieDetails(compileTimeArguments.apiKey, runtimeArguments.locale.toLanguageTag(), movieId)
+        return@withContext service.fetchMovieDetails(
+            movieId,
+            compileTimeArguments.apiKey,
+            runtimeArguments.locale.toLanguageTag()
+        )
             .asMovieDetailedInfo(imageConfiguration, runtimeArguments.locale)
     }
 }
