@@ -1,12 +1,11 @@
-package com.example.latestmoviesapp.ui.list
+package com.example.latestmoviesapp.ui.misc.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.latestmoviesapp.data.movies.repos.LatestMoviesRepo
 import com.example.latestmoviesapp.domain.movies.MovieShortInfo
-import java.lang.Exception
+import com.example.latestmoviesapp.domain.movies.MovieShortInfoPage
 
-class MovieSource(private val moviesRepo: LatestMoviesRepo) : PagingSource<Int, MovieShortInfo>() {
+class MoviesPagingSource(private val retrievePage: suspend (Int) -> MovieShortInfoPage) : PagingSource<Int, MovieShortInfo>() {
 
     override fun getRefreshKey(state: PagingState<Int, MovieShortInfo>): Int? {
         return null
@@ -15,7 +14,7 @@ class MovieSource(private val moviesRepo: LatestMoviesRepo) : PagingSource<Int, 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MovieShortInfo> {
         return try {
             val nextPage = params.key ?: 1
-            val movieListResponse = moviesRepo.getLatestMovies(nextPage)
+            val movieListResponse = retrievePage(nextPage)
 
             LoadResult.Page(
                 data = movieListResponse.movies,

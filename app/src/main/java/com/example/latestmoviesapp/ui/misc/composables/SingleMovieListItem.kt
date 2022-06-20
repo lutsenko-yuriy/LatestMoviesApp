@@ -1,5 +1,6 @@
-package com.example.latestmoviesapp.ui.general
+package com.example.latestmoviesapp.ui.misc.composables
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -23,7 +24,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.latestmoviesapp.R
 import com.example.latestmoviesapp.domain.movies.MovieShortInfo
-import java.util.*
+import com.example.latestmoviesapp.ui.misc.utils.format
 
 @Composable
 fun SingleMovieListItem(
@@ -48,8 +49,10 @@ fun SingleMovieListItem(
             AsyncImage(
                 model = movieShortInfo.posterUrl,
                 contentDescription = stringResource(R.string.movie_list_item_poster_description, movieShortInfo.title),
-                modifier = Modifier.size(width = 42.dp, height = 60.dp),
-                contentScale = ContentScale.FillHeight
+                modifier = Modifier
+                    .size(width = 42.dp, height = 60.dp)
+                    .background(Color.LightGray),
+                contentScale = ContentScale.FillHeight,
             )
 
             Column(
@@ -64,7 +67,7 @@ fun SingleMovieListItem(
                 )
                 Text(
                     modifier = Modifier.padding(top = 4.dp),
-                    text = stringResource(id = R.string.movie_list_item_avg_review, movieShortInfo.voteAverage),
+                    text = stringResource(id = R.string.movie_list_item_avg_review, movieShortInfo.voteAverage.format(2)),
                     fontSize = 12.sp,
                     fontStyle = FontStyle.Italic,
                     color = Color.Gray
@@ -87,11 +90,7 @@ private fun SingleMovieListItemPreview() {
             id = 1,
             title = "Title",
             posterUrl = "https://google.com/original/posterpath.jpg",
-            releaseDate = Calendar.getInstance().apply {
-                time = Date(2020 - 1900, 5, 5, 0, 0, 0)
-            },
-            voteAverage = 5,
-            adult = true,
+            voteAverage = 5.0,
         ),
         onMovieSelected = { }
     )

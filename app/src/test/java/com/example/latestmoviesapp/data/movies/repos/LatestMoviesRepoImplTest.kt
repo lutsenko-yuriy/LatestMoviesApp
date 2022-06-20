@@ -29,9 +29,7 @@ import org.mockito.kotlin.any
 import org.mockito.kotlin.times
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
-import java.util.*
 
-@Suppress("DEPRECATION")
 @OptIn(ExperimentalCoroutinesApi::class)
 class LatestMoviesRepoImplTest {
 
@@ -125,11 +123,9 @@ class LatestMoviesRepoImplTest {
                 movies = listOf(
                     NetworkMovie(
                         id = 1,
-                        title = "Title",
                         posterPath = "/posterpath.jpg",
-                        releaseDate = "2020-06-05",
-                        voteAverage = 5,
-                        adult = true,
+                        title = "Title",
+                        voteAverage = 5.0,
                     )
                 ),
                 totalPages = 1,
@@ -151,11 +147,7 @@ class LatestMoviesRepoImplTest {
                     id = 1,
                     title = "Title",
                     posterUrl = "${SOME_SECURE_BASE_URL}original/posterpath.jpg",
-                    releaseDate = Calendar.getInstance().apply {
-                        time = Date(2020 - 1900, 5, 5, 0, 0, 0)
-                    },
-                    voteAverage = 5,
-                    adult = true,
+                    voteAverage = 5.0,
                 )
             ),
             totalPages = 1,
@@ -190,11 +182,9 @@ class LatestMoviesRepoImplTest {
                 movies = listOf(
                     NetworkMovie(
                         id = 1,
-                        title = "Title",
                         posterPath = null,
-                        releaseDate = "2020-06-05",
-                        voteAverage = 5,
-                        adult = true,
+                        title = "Title",
+                        voteAverage = 5.0,
                     )
                 ),
                 totalPages = 1,
@@ -216,11 +206,7 @@ class LatestMoviesRepoImplTest {
                     id = 1,
                     title = "Title",
                     posterUrl = null,
-                    releaseDate = Calendar.getInstance().apply {
-                        time = Date(2020 - 1900, 5, 5, 0, 0, 0)
-                    },
-                    voteAverage = 5,
-                    adult = true,
+                    voteAverage = 5.0,
                 )
             ),
             totalPages = 1,
@@ -256,19 +242,15 @@ class LatestMoviesRepoImplTest {
                 movies = listOf(
                     NetworkMovie(
                         id = 1,
-                        title = "Title",
                         posterPath = "/posterpath.jpg",
-                        releaseDate = "2020-06-05",
-                        voteAverage = 5,
-                        adult = true,
+                        title = "Title",
+                        voteAverage = 5.0,
                     ),
                     NetworkMovie(
                         id = 1,
-                        title = "Title",
                         posterPath = null,
-                        releaseDate = "2020-06-04",
-                        voteAverage = 5,
-                        adult = false,
+                        title = "Title",
+                        voteAverage = 5.0,
                     )
                 ),
                 totalPages = 1,
@@ -290,21 +272,13 @@ class LatestMoviesRepoImplTest {
                     id = 1,
                     title = "Title",
                     posterUrl = "${SOME_SECURE_BASE_URL}original/posterpath.jpg",
-                    releaseDate = Calendar.getInstance().apply {
-                        time = Date(2020 - 1900, 5, 5, 0, 0, 0)
-                    },
-                    voteAverage = 5,
-                    adult = true,
+                    voteAverage = 5.0,
                 ),
                 MovieShortInfo(
                     id = 1,
                     title = "Title",
                     posterUrl = null,
-                    releaseDate = Calendar.getInstance().apply {
-                        time = Date(2020 - 1900, 5, 4, 0, 0, 0)
-                    },
-                    voteAverage = 5,
-                    adult = false,
+                    voteAverage = 5.0,
                 )
             ),
             totalPages = 1,

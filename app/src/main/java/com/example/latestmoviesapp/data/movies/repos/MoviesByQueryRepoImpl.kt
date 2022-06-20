@@ -19,14 +19,16 @@ class MoviesByQueryRepoImpl @Inject constructor(
 
     override suspend fun getMoviesByQuery(query: String, page: Int): MovieShortInfoPage = withContext(Dispatchers.IO) {
         val configuration = imageConfigurationRepo.getImageConfiguration()
-        val latestMoviesPage = service.fetchMovies(
-            apiKey = compileTimeArguments.apiKey,
-            locale = runtimeArguments.locale.toLanguageTag(),
-            query = query,
-            order = runtimeArguments.order,
-            page = page
-        )
-        return@withContext latestMoviesPage.asMovieShortInfoPage(configuration, runtimeArguments)
+        val latestMoviesPage =
+            service.fetchMovies(
+                apiKey = compileTimeArguments.apiKey,
+                locale = runtimeArguments.locale.toLanguageTag(),
+                query = query,
+                order = runtimeArguments.order,
+                page = page
+            )
+
+        return@withContext latestMoviesPage.asMovieShortInfoPage(configuration)
     }
 
 }

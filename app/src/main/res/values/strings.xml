@@ -3,7 +3,7 @@
     <string name="movie_list_title">Latest Movies</string>
     <string name="movie_list_item_poster_description" formatted="false">A poster for a movie with a title \"%s\"</string>
     <string name="movie_list_item_icon_description" formatted="false">An icon for a movie with a title \"%s\"</string>
-    <string name="movie_list_item_avg_review" formatted="false">Average Review: %d</string>
+    <string name="movie_list_item_avg_review" formatted="false">Average Review: %s</string>
 
     <string name="movie_details_loading_title">Loading…</string>
 
@@ -20,4 +20,11 @@
         <item quantity="one">Based on %1$d review</item>
         <item quantity="other">Based on %1$d reviews</item>
     </plurals>
+
+    <string name="movie_search_title">Search</string>
+
+    <string name="move_back_content_description">A move back button</string>
+    <string name="movie_search_clear_content_description">A clear search input button</string>
+    <string name="movie_search_text">Search a movie</string>
+    <string name="movie_search_button_description">A button leading to movie search</string>
 </resources>

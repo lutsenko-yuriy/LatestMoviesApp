@@ -63,7 +63,7 @@ class ImageConfigurationRepoImplTest {
     }
 
     @Test
-    fun getImageConfiguration_goesToNetworkOnce() = runTest {
+    fun getImageConfiguration_goesToNetworkOnlyOnce() = runTest {
         whenever(service.fetchImageConfiguration(anyString())).thenReturn(
             NetworkImageConfiguration(
                 NetworkConfiguration(

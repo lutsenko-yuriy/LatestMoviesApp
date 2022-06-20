@@ -1,4 +1,4 @@
-package com.example.latestmoviesapp.ui.detail
+package com.example.latestmoviesapp.ui.detail.model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -20,7 +20,6 @@ class MovieDetailsViewModel @Inject constructor(
 
     fun init(movieId: Int) {
         viewModelScope.launch {
-            _movieDetails.emit(MovieDetailsScreenState.Loading)
             _movieDetails.emit(
                 try {
                     MovieDetailsScreenState.Success(movieDetailsRepo.getMovieDetailedInfo(movieId))

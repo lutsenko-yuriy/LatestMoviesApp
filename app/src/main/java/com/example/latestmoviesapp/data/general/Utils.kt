@@ -31,23 +31,20 @@ object Utils {
     }
 
     fun NetworkPagingMovies.asMovieShortInfoPage(
-        configuration: ImageConfiguration,
-        runtimeArguments: NetworkRuntimeArguments
+        configuration: ImageConfiguration
     ) = MovieShortInfoPage(
         page = page,
-        movies = movies.map { it.asMovieShortDetail(configuration, runtimeArguments.locale) },
+        movies = movies.map { it.asMovieShortDetail(configuration) },
         totalPages = totalPages,
         totalResults = totalResults
     )
 
-    private fun NetworkMovie.asMovieShortDetail(configuration: ImageConfiguration, locale: Locale): MovieShortInfo {
+    private fun NetworkMovie.asMovieShortDetail(configuration: ImageConfiguration): MovieShortInfo {
         return MovieShortInfo(
             id = this.id,
             title = this.title,
             posterUrl = buildUrlFromPath(configuration, this.posterPath),
-            releaseDate = this.releaseDate.formatToDate(locale),
             voteAverage = this.voteAverage,
-            adult = this.adult,
         )
     }
 

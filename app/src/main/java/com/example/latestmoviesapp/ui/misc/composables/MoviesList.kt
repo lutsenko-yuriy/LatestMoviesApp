@@ -1,4 +1,4 @@
-package com.example.latestmoviesapp.ui.general
+package com.example.latestmoviesapp.ui.misc.composables
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
