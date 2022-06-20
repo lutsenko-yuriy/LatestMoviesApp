@@ -18,11 +18,12 @@ import com.example.latestmoviesapp.ui.search.models.MovieSearchViewModel
 @Composable
 fun MoviesSearchScreen(
     movieSearchViewModel: MovieSearchViewModel,
-    onMovieSelected: (MovieShortInfo) -> Unit
+    onMovieSelected: (MovieShortInfo) -> Unit,
+    onBackPressed: () -> Unit
 ) {
     Scaffold(
         topBar = {
-            MoviesTopAppBar(text = stringResource(id = R.string.movie_search_title))
+            MoviesTopAppBar(text = stringResource(id = R.string.movie_search_title), onNavigateBack = onBackPressed)
         }
     ) {
         Column(modifier = Modifier.fillMaxSize()) {

@@ -43,7 +43,7 @@ fun MovieDetailsView(modifier: Modifier = Modifier, movieDetails: MovieDetailedI
             modifier = Modifier
                 .fillMaxWidth()
                 .background(Color.LightGray)
-                .aspectRatio(4f / 3),
+                .aspectRatio(7f / 10),
             contentScale = ContentScale.FillWidth,
             model = movieDetails.posterUrl,
             contentDescription = stringResource(id = R.string.movie_details_content_description, movieDetails.title)

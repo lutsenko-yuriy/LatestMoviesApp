@@ -19,6 +19,7 @@ import com.example.latestmoviesapp.ui.search.models.MovieSearchViewModel
 @Composable
 fun MoviesNavHost(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
+    
     NavHost(
         modifier = modifier,
         navController = navController,
@@ -26,6 +27,7 @@ fun MoviesNavHost(modifier: Modifier = Modifier) {
     ) {
         val onMovieSelected: (MovieShortInfo) -> Unit = { navController.navigate("details/${it.id}") }
         val onSearchClicked: () -> Unit = { navController.navigate("search") }
+        val onBackPressed: () -> Unit = { navController.popBackStack() }
 
         composable("list") {
             val movieListViewModel = hiltViewModel<MovieListViewModel>()
@@ -40,7 +42,8 @@ fun MoviesNavHost(modifier: Modifier = Modifier) {
             val movieSearchViewModel = hiltViewModel<MovieSearchViewModel>()
             MoviesSearchScreen(
                 movieSearchViewModel = movieSearchViewModel,
-                onMovieSelected = onMovieSelected
+                onMovieSelected = onMovieSelected,
+                onBackPressed = onBackPressed
             )
         }
 
@@ -55,7 +58,7 @@ fun MoviesNavHost(modifier: Modifier = Modifier) {
             }
             MovieDetailsScreen(
                 movieDetailsViewModel = movieDetailsViewModel,
-                onBackPressed = { navController.popBackStack() }
+                onBackPressed = onBackPressed
             )
         }
     }
