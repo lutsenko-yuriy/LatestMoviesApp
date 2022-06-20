@@ -27,7 +27,7 @@ class LatestMoviesRepoImpl @Inject constructor(
             order = runtimeArguments.order,
             page = page
         )
-        return@withContext latestMoviesPage.asMovieShortInfoPage(configuration, runtimeArguments)
+        return@withContext latestMoviesPage.asMovieShortInfoPage(configuration)
     }
 
 }
