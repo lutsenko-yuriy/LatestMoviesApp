@@ -62,4 +62,23 @@ class ImageConfigurationRepoImplTest {
         assertEquals(expectedConfiguration, actualConfiguration)
     }
 
+    @Test
+    fun getImageConfiguration_goesToNetworkOnce() = runTest {
+        whenever(service.fetchImageConfiguration(anyString())).thenReturn(
+            NetworkImageConfiguration(
+                NetworkConfiguration(
+                    secureBaseUrl = SOME_SECURE_BASE_URL,
+                )
+            )
+        )
+
+        val expectedConfiguration = DEFAULT_IMAGE_CONFIGURATION
+        val actualConfigurationForFirstTime = repo.getImageConfiguration()
+        val actualConfigurationForSecondTime = repo.getImageConfiguration()
+
+        verify(service, times(1)).fetchImageConfiguration(anyString())
+        assertEquals(expectedConfiguration, actualConfigurationForFirstTime)
+        assertEquals(expectedConfiguration, actualConfigurationForSecondTime)
+    }
+
 }
