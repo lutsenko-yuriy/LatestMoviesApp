@@ -21,7 +21,7 @@ fun MovieDetailsViewLandscape(modifier: Modifier = Modifier, movieDetails: Movie
             modifier = Modifier
                 .fillMaxHeight()
                 .aspectRatio(7f / 10),
-            contentScale = ContentScale.FillWidth,
+            contentScale = ContentScale.FillHeight,
             model = movieDetails.posterUrl,
             contentDescription = stringResource(id = R.string.movie_details_poster_content_description, movieDetails.title)
         )

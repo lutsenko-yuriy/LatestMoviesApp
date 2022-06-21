@@ -146,7 +146,13 @@ fun MovieDetailsList(modifier: Modifier = Modifier, movieDetails: MovieDetailedI
                 text = stringResource(
                     id = R.string.movie_details_production_companies,
                     movieDetails.productionCompanies.joinToString(", ") {
-                        "${it.name} (${it.originCountry})"
+                        val builder = StringBuilder(it.name)
+
+                        if (it.originCountry.isNotEmpty()) {
+                            builder.append(" (${it.originCountry})")
+                        }
+
+                        builder.toString()
                     }),
                 fontWeight = FontWeight.Light,
                 fontSize = 14.sp,
