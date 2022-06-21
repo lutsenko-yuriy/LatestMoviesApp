@@ -21,7 +21,7 @@ object NetworkArgumentsModule {
     @Singleton
     fun provideCompileTimeArguments(@ApplicationContext context: Context): NetworkCompileTimeArguments {
         return NetworkCompileTimeArguments(
-            baseUrl = context.getString(R.string.base_url),
+            baseUrl = "https://api.themoviedb.org/3/",
             apiKey = context.getString(R.string.api_key),
         )
     }
