@@ -16,6 +16,7 @@ object RetrofitModule {
     @Provides
     @Singleton
     fun provideRetrofit(configuration: NetworkCompileTimeArguments): Retrofit {
+        // TODO - read about passing API keys via OkHttpClient.Builder()...
         return Retrofit.Builder()
             .baseUrl(configuration.baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
